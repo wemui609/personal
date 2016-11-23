@@ -1,75 +1,11 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="css/style1.css">
+
 <html>
 <head>
 	<title>Book List</title>
 </head>
-<style type="text/css">
-*{
-	font-family: sans-serif;
-	color:#666;
-}
-body{
-	background-color: #f3f3f3;
-	font-size: 16px;
-}
 
-input{
-	font-size: 20px;
-	padding:10px;
-}
-
-button{
-	font-size: 20px;
-	padding:10px;
-	border-radius: 10px;
-	background: #fff;
-}
-
-ul {list-style: none}
-
-li:before{
-content: "\25AA";
-color:#f00;
-font-size: 30px;
-vertical-align: super;
-display: inline-block;
-width: 1em;
-margin-left: -1em
-}
-li, p, td{
-	font-size: 18px;
-}
-
-table{
-	width:100%;
-	background-color: #fff;
-}
-
-th{
-	text-align: left;
-	padding:10px;
-	background-color: #ddd;
-}
-
-td{
-	text-align: left;
-	padding:10px;
-}
-
-tr{background-color: #fafafa;}
-
-tr:nth-child(odd){
-		background-color: #f3f3f3;
-}
-
-.container{
-	position: relative;
-	width:500px;
-	margin: 0px auto;
-	padding:1px 20px 20px 20px;
-	background-color: #ddd;
-}
-</style>
 <body>
 <div class="container">
 	<h1>Book List</h1>
@@ -99,86 +35,12 @@ tr:nth-child(odd){
 		</table>
 	</div>
 </div>
-
-<script>
-	if(localStorage.getItem("booklist") == null){
-		booklist = [];
-	} else{
-		booklist = JSON.parse(localStorage.getItem("booklist"));
-	}
-
-	function books( realName , name ){
-
-		this.realName = realName;
-		this.name = name;
-
-		var result = document.getElementById("result");
-		var li = document.createElement("li");
-
-		if (realName == 'Robert J Sawyer'){
-			li.innerHTML = this.name + '<br>highly recommended book;'
-			result.appendChild(li);
-		} else if (name == 'Hominids' || name == 'Humans' || name == 'Hybrids'){
-			li.innerHTML = this.name + ' is part of a trilogy';
-			result.appendChild(li);
-		} else{
-			li.innerHTML = this.name+'<br>'+this.realName;
-			result.appendChild(li);
-		}
-
-		Book = {};
-		Book['book'] = name;
-		Book['author'] = realName;
-		checklist = [];
-		for (idh = 0; idh < booklist.length; ++idh){
-			checklist.push(booklist[idh].book);
-		}
-		if (checklist.indexOf(name) == -1){
-				booklist.push(Book);
-				localStorage.setItem("booklist", JSON.stringify(booklist));
-		}
-
-	}
-
-	//new books('Robert J Sawyer', 'Hominds');
-	//new books('Robert J Sawyer', 'Humans');
-
-
-	function addition(){
-		n = document.getElementById('name').value;
-		r = document.getElementById('rname').value;
-		new books(r,n);
-
-		var table = document.getElementById("savedbooks");
-		var tr = document.createElement("tr");
-		tr.className = "bookw";
-		tr.innerHTML = '<td>' + n + '</td><td>' + r + '</td>';
-		table.appendChild(tr);
-
-	}
-
-	function buildTB(){
-		for (ti = 0; ti < booklist.length; ti++){
-
-			t1 = JSON.parse(localStorage.getItem("booklist"))[ti].book;
-			t2 = JSON.parse(localStorage.getItem("booklist"))[ti].author;
-
-			var table = document.getElementById("savedbooks");
-			var tr = document.createElement("tr");
-			tr.className = "bookw";
-			tr.innerHTML = '<td>' + t1 + '</td><td>' + t2 + '</td>';
-			table.appendChild(tr);
-
-			console.log(booklist.length,ti,t1,t2);
-
-		}
-	}
-
-	//buildTB();
+<script src="js/calc.js"></script>
+<script >
 
 </script>
-
 </body>
+
 </html/>
 
 
